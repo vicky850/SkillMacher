@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Functions</h1>
+
+<p>Call a function which performs a calculation and returns the result:</p>
+
+<p id="demo"></p>
+
+<script>
+function myFunction(data) {
+	//let data = "abc test ([link to ted talk](https://www.google.com)) is done ([link to yahoo](https://www.yahoo.com)) ok."
+	let arr = data.split("([");
+    if(arr.length>1){
+        for(let i=1; i<arr.length; i++){
+            let dtwithLink = arr[i];
+            let linkdt = dtwithLink.split("))");
+            let labelLink = linkdt[0].split("](");
+            let link = '<a href='+ labelLink[1] +' target="_blank" >' + labelLink[0] + '</a>';
+            linkdt[0] = link;
+            linkdt.join(" ");
+            arr[i] = linkdt.join("");
+        }
+    }
+    let res =arr.join(" ")
+    return res;
+}
+
+let result = myFunction();
+document.getElementById("demo").innerHTML = result;
+</script>
+
+</body>
+</html>
